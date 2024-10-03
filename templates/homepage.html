@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanSeva Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <h1>Welcome to UrbanSeva</h1>
+    <ul>
+        <li>
+            <div class="single-list-topics-content">
+                <div class="single-list-topics-icon">
+                    <i class="fas fa-bolt"></i> <!-- Electrician -->
+                </div>
+                <h2><a href="{{ url_for('view_services', service_name='Electrician') }}">Electrician Service</a></h2>
+                <p>270 listings</p>
+            </div>
+        </li>
+        <li>
+            <div class="single-list-topics-content">
+                <div class="single-list-topics-icon">
+                    <i class="fas fa-wrench"></i> <!-- Plumber -->
+                </div>
+                <h2><a href="{{ url_for('view_services', service_name='Plumber') }}">Plumber Service</a></h2>
+                <p>120 listings</p>
+            </div>
+        </li>
+        <li>
+            <div class="single-list-topics-content">
+                <div class="single-list-topics-icon">
+                    <i class="fas fa-wrench"></i> <!-- Plumber -->
+                </div>
+                <h2><a href="{{ url_for('view_services', service_name='carpenter') }}">carpenter Service</a></h2>
+                <p>120 listings</p>
+            </div>
+        </li>
+    </ul>
+    <a href="{{ url_for('add_service') }}">Add a New Service</a>
+</body>
+</html>

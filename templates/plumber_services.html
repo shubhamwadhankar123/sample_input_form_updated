@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="path/to/bootstrap.css"> <!-- Add your CSS path -->
+    <link rel="stylesheet" href="path/to/font-awesome.css"> <!-- Font Awesome for icons -->
+    <title>Plumber Services</title>
+</head>
+<body>
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Plumber Services</h2>
+        <div class="row">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="team-item text-center">
+                    <div class="team-img">
+                        <img class="img-fluid" src="{{ url_for('static', filename='images/' + service[1]) }}" alt="{{ service[2] }}">
+                    </div>
+                    <div class="team-text">
+                        <h3>{{ service[2] }}</h3>
+                        <p><strong>Details:</strong> {{ service[3] }}</p>
+                        <p><strong>Provider:</strong> {{ service[4] }}</p>
+                        <p><strong>Location:</strong> {{ service[5] }}, {{ service[6] }}</p>
+                        <p><strong>Contact:</strong> {{ service[7] }}</p>
+                        <p><strong>Ratings:</strong> {{ service[8] }}</p>
+                        <form action="{{ url_for('delete_service', service_id=service[0]) }}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete Service</button>
+                        </form>
+                        <a href="{{ url_for('book_service', service_id=service[0]) }}" class="btn btn-primary">Book Service</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="path/to/jquery.js"></script> <!-- Add your JS path -->
+    <script src="path/to/bootstrap.js"></script>
+</body>
+</html>

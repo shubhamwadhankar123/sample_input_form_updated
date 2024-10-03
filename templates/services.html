@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ service_name }} Services</title>
+    <style>
+        /* Add some basic styling for the slider */
+        .slider {
+            display: flex;
+            overflow-x: auto;
+            width: 100%;
+            padding: 20px;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+        .card {
+            min-width: 200px;
+            margin-right: 10px;
+            border: 1px solid #ccc; /* Added border for better visibility */
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+            padding: 10px; /* Padding for content spacing */
+            text-align: center; /* Center align text */
+        }
+        .card img {
+            width: 100%;
+            height: 150px; /* Fixed height for consistent image size */
+            object-fit: cover; /* Maintain aspect ratio while filling the height */
+            border-radius: 5px; /* Added rounded corners to image */
+        }
+        .button {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none; /* No border */
+            padding: 10px 15px; /* Padding for button */
+            text-align: center; /* Center text */
+            text-decoration: none; /* No underline */
+            display: inline-block; /* Inline block for button */
+            margin: 5px 0; /* Margin for spacing */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 5px; /* Rounded corners */
+        }
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ service_name }} Services</h1>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    
+    <div class="slider">
+        {% for service in services %}
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/' ~ service[1]) }}" alt="Service Image"> <!-- Access service_image by index -->
+                <h2>
+                    <a href="{{ url_for('service_page', service_id=service[0]) }}">{{ service[3] }}</a> <!-- Link to the service page -->
+                </h2> <!-- Access service_provider_name by index -->
+                <p>{{ service[4] }}</p> <!-- Access service_details by index -->
+                <p>Location: {{ service[5] }}, {{ service[6] }}</p> <!-- Access city and state by index -->
+                <p>Contact: {{ service[8] }}</p> <!-- Access mobile_no by index -->
+                <p>Ratings: {{ service[9] }}</p> <!-- Access ratings by index -->
+                <form action="{{ url_for('delete_service', service_id=service[0]) }}" method="post"> <!-- Access id by index -->
+                    <button type="submit" class="button">Delete</button>
+                </form>
+                <a href="{{ url_for('book_service', service_id=service[0]) }}" class="button">Book Your Service Now</a> <!-- Access id by index -->
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

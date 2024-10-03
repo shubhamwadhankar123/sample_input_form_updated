@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Service</title>
+</head>
+<body>
+    <h1>Add New Service</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.service_name.label }} {{ form.service_name() }}
+        </div>
+        <div>
+            {{ form.service_provider_name.label }} {{ form.service_provider_name() }}
+        </div>
+        <div>
+            {{ form.service_details.label }} {{ form.service_details() }}
+        </div>
+        <div>
+            {{ form.city.label }} {{ form.city() }}
+        </div>
+        <div>
+            {{ form.state.label }} {{ form.state() }}
+        </div>
+        <div>
+            {{ form.full_address.label }} {{ form.full_address() }}
+        </div>
+        <div>
+            {{ form.mobile_no.label }} {{ form.mobile_no() }}
+        </div>
+        <div>
+            {{ form.ratings.label }} {{ form.ratings() }}
+        </div>
+        <div>
+            {{ form.service_image.label }} 
+            <input type="file" name="service_image" multiple>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

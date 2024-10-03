@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrician Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Electrician Services</h1>
+    <div>
+        {% for service in services %}
+            <div class="service">
+                <h2>{{ service[2] }}</h2> <!-- Service Provider Name -->
+                <img src="{{ url_for('static', filename='images/' + service[1]) }}" alt="{{ service[2] }}">
+                <p>{{ service[3] }}</p> <!-- Service Details -->
+                <p>City: {{ service[4] }}</p> <!-- City -->
+                <p>Address: {{ service[7] }}</p> <!-- Full Address -->
+                <p>Mobile: {{ service[8] }}</p> <!-- Mobile Number -->
+                <p>Ratings: {{ service[9] }}</p> <!-- Ratings -->
+                <form action="{{ url_for('delete_service', service_id=service[0]) }}" method="POST">
+                    <button type="submit">Delete Service</button>
+                </form>
+                <a href="/book_service/{{ service[0] }}">Book Your Service Now</a>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
